@@ -50,5 +50,9 @@
 <figcaption class="bad">O combo 8687 está marcado e a lixeira dele está desligada. O texto da lixeira é "Cancelamento disponível apenas para questionários individuais pendentes". A lixeira do EAG-A, que não é combo, continua ligada. Cancelamento em massa do combo responde "O cancelamento de baterias deve ser feito separadamente." Pedir o cancelamento do AOL-A direto no mesmo endpoint responde 400, com a mesma frase. Os três questionários continuam ativos, status 20. Não entrou estorno, nem licença individual de AOL-A, AOL-C ou AOL-D.</figcaption>
 </figure>
 <p class="bad">A licença do combo continua consumida. Cancelar um item do combo, que no legado devolveria 1 licença daquele instrumento, aqui não acontece.</p>
+
+<h2>5. O webhook de cancelamento do Platform Manager também não estorna</h2>
+<p>O AOL-D desse combo, questionário 2889989, código <code>_Gdiz1gnXUkX3-YDBfQVM5wIVdFZ5lAXyuUM_IjvbnU</code>, foi aberto várias vezes e o assessment já o tinha cancelado. O Platform Manager avisa o backend com <code>POST /webhook</code>, evento <code>QUESTIONNAIRE_STATUS</code>, mensagem <code>QUESTIONNAIRE_CANCELED</code> e a tag <code>QUESTIONNAIRE_CANCELED</code>.</p>
+<p class="bad">Esse POST foi feito no mesmo endpoint. A resposta foi 200. O questionário continuou ativo, status 20, dentro do projeto 8687. O uso id 60, 1 licença do COMBO_AOL, ficou como estava. Não entrou estorno e não entrou licença individual de AOL-D. O handler de status não trata cancelamento: a mensagem desconhecida fica no log e o saldo não muda. No servidor o caminho é o mesmo.</p>
 </body>
 </html>
