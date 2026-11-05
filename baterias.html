@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>VF-660 baterias e cancelamento de combo</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 980px; margin: 32px auto; padding: 0 20px; color: #1c1c1c; line-height: 1.45; }
+  h2 { margin-top: 2.2rem; border-top: 1px solid #ddd; padding-top: 1.2rem; }
+  figure { margin: 1rem 0 1.6rem; }
+  img { max-width: 100%; border: 1px solid #ccc; }
+  figcaption { font-family: sans-serif; font-size: 0.95rem; margin-top: 0.5rem; }
+  .ok { color: #0b6b2f; font-weight: 700; }
+  .bad { color: #8a1c1c; font-weight: 700; }
+  code { font-family: ui-monospace, monospace; font-size: 0.9em; }
+</style>
+</head>
+<body>
+<p>Igor entrou como psicólogo, departamento 471. O avaliado desta rodada é VF660 Bateria, id 156927, criado na hora. O departamento já tinha 4 aplicações de EAG-A e nenhuma de R-1. Também não tinha COMBO_AOL. Para o aplicar existir, o banco local recebeu 1 licença de aplicação do combo, compra id 58.</p>
+
+<h2>1. Criar a bateria não gasta licença</h2>
+<figure>
+<img src="bat-01-formulario.png" alt="Formulário da bateria">
+<figcaption>Nome "VF660 bateria sem saldo", tipo Aplicação, itens R-1 e EAG-A.</figcaption>
+</figure>
+<figure>
+<img src="bat-02-lista.png" alt="Lista de baterias">
+<figcaption class="ok">A bateria ficou na lista: Aplicação, composição R-1_BR_PTBR e EAG-A. No banco é a bateria 8, do psyuser 904. A última movimentação de crédito continuou a 58. Criar a bateria não debitou nada. A segunda, "VF660 bateria EAG", só com EAG-A, é a bateria 9, e também não debitou.</figcaption>
+</figure>
+
+<h2>2. Na aplicação, a bateria aparece pelo nome e pelos itens</h2>
+<figure>
+<img src="bat-03-aplicar-lista.png" alt="Lista de aplicar com as baterias">
+<figcaption class="ok">No avaliado novo, em Aplicar, a bateria só de EAG-A aparece como "[BATERIA] VF660 bateria EAG (EAG-A)". A de R-1 e EAG-A aparece em vermelho: "[BATERIA] VF660 bateria sem saldo (R-1_BR_PTBR, EAG-A) — Créditos insuficientes". As duas ficam na lista. A sem saldo não some.</figcaption>
+</figure>
+<figure>
+<img src="bat-04-creditos-insuficientes.png" alt="Aviso de créditos insuficientes">
+<figcaption class="ok">Salvar a bateria sem saldo responde "Créditos insuficientes para as baterias: VF660 bateria sem saldo." Não nasceu questionário e não nasceu movimentação. O R-1 de aplicação do departamento segue em zero, então a bateria inteira fica de fora.</figcaption>
+</figure>
+
+<h2>3. Aplicar a bateria gasta 1 de cada item</h2>
+<figure>
+<img src="bat-05-eag-aplicado.png" alt="EAG-A aplicado pela bateria">
+<figcaption class="ok">A bateria só de EAG-A entrou. O avaliado ficou com o questionário 2889986, EAG-A, aplicação, pendente, sem combo. O banco gravou o uso id 59: 1 aplicação do teste 732, saindo do departamento 471. O EAG-A foi de 4 para 3. O R-1 não entrou nessa conta.</figcaption>
+</figure>
+
+<h2>4. Cancelar um item do combo não devolve licença individual</h2>
+<p>O COMBO_AOL saiu pela mesma tela de Aplicar. Os três itens nasceram juntos, projeto 8687, todos pendentes: AOL-A (2889987), AOL-C (2889988) e AOL-D (2889989). O consumo foi um só, uso id 60, 1 aplicação do combo 24. Não houve uso separado de AOL-A, AOL-C ou AOL-D.</p>
+<figure>
+<img src="bat-06-combo-nao-cancela.png" alt="Combo selecionado e aviso de cancelamento">
+<figcaption class="bad">O combo 8687 está marcado e a lixeira dele está desligada. O texto da lixeira é "Cancelamento disponível apenas para questionários individuais pendentes". A lixeira do EAG-A, que não é combo, continua ligada. Cancelamento em massa do combo responde "O cancelamento de baterias deve ser feito separadamente." Pedir o cancelamento do AOL-A direto no mesmo endpoint responde 400, com a mesma frase. Os três questionários continuam ativos, status 20. Não entrou estorno, nem licença individual de AOL-A, AOL-C ou AOL-D.</figcaption>
+</figure>
+<p class="bad">A licença do combo continua consumida. Cancelar um item do combo, que no legado devolveria 1 licença daquele instrumento, aqui não acontece.</p>
+</body>
+</html>
