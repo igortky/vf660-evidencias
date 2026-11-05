@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>VF-660 · Correções</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 980px; margin: 32px auto; padding: 0 20px; color: #1c1c1c; line-height: 1.45; }
+  h1 { font-size: 1.6rem; }
+  h2 { margin-top: 2.2rem; border-top: 1px solid #ddd; padding-top: 1.2rem; }
+  figure { margin: 1rem 0 1.6rem; }
+  img { max-width: 100%; border: 1px solid #ccc; }
+  figcaption { font-family: sans-serif; font-size: 0.95rem; margin-top: 0.5rem; }
+  .ok { color: #0b6b2f; font-weight: 700; }
+  code { font-family: ui-monospace, monospace; font-size: 0.9em; }
+</style>
+</head>
+<body>
+<p><a href="index.html">Voltar ao resumo</a></p>
+<h1>Correções</h1>
+
+<h2>Pacote já usado: a tela oferece desativar</h2>
+<p>O 409 da exclusão de um pacote com movimentação agora inclui <code>code: PACKAGE_HAS_TRANSACTIONS</code>. A tela lê esse campo e abre o diálogo de desativar.</p>
+<figure>
+<img src="correcoes-desativar.png" alt="Diálogo Pacote em uso com a pergunta Deseja desativá-lo">
+<figcaption class="ok">No pacote 29, "VF660 rodada 2 editado", confirmei a exclusão. A tela mostrou "Pacote em uso" e perguntou se deseja desativá-lo. Cancelei. O pacote continua ativo.</figcaption>
+</figure>
+</body>
+</html>
