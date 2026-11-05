@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>VF-660</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 980px; margin: 32px auto; padding: 0 20px; color: #1c1c1c; line-height: 1.45; }
+  h1 { font-size: 1.6rem; }
+  h2 { margin-top: 2.2rem; border-top: 1px solid #ddd; padding-top: 1.2rem; }
+  figure { margin: 1rem 0 1.6rem; }
+  img { max-width: 100%; border: 1px solid #ccc; }
+  figcaption { font-family: sans-serif; font-size: 0.95rem; margin-top: 0.5rem; }
+  .ok { color: #0b6b2f; font-weight: 700; }
+  code { font-family: ui-monospace, monospace; font-size: 0.9em; }
+</style>
+</head>
+<body>
+<p><a href="index.html">Voltar ao resumo</a></p>
+<p>Pacote de teste: id 29, código TOL-R2, itens R-1 aplicação e EAG-A aplicação.</p>
+<p>Papéis usados durante o teste: Igor como admin, Pedro como distribuidor, Antonio como cliente do Pedro.</p>
+
+<h2>1. Criar o pacote</h2>
+<figure>
+<img src="r2-02-pacote-formulario.png" alt="Formulário novo pacote">
+<figcaption>O admin preenche nome, código VOL e código ERP, deixa o pacote ativo, deixa pós-pago desligado e escolhe dois itens. A tela avisa que cada pacote distribuído credita 1 licença de cada item.</figcaption>
+</figure>
+<figure>
+<img src="r2-03-pacote-criado-lista.png" alt="Lista com o pacote 29">
+<figcaption class="ok">O pacote ficou gravado: id 29, nome "VF660 rodada 2", TOL-R2, ERP-R2, com R-1 aplicação e EAG-A aplicação.</figcaption>
+</figure>
+
+<h2>2. Editar e buscar</h2>
+<figure>
+<img src="r2-04-pacote-edicao.png" alt="Edição do pacote">
+<figcaption>O mesmo pacote aberto para edição, com o nome novo e os mesmos itens e códigos.</figcaption>
+</figure>
+<figure>
+<img src="r2-05-pacote-busca.png" alt="Busca TOL-R2">
+<figcaption class="ok">A alteração ficou salva. O aviso diz "Pacote atualizado" e a busca por TOL-R2 mostra só o id 29, com o nome "VF660 rodada 2 editado".</figcaption>
+</figure>
+
+<h2>3. Excluir um pacote que ainda não foi usado</h2>
+<figure>
+<img src="r2-06-pacote-excluir-confirma.png" alt="Confirmação de exclusão">
+<figcaption>Pacote id 30, criado só para este teste, na confirmação de exclusão.</figcaption>
+</figure>
+<figure>
+<img src="r2-07-pacote-excluido.png" alt="Lista sem o pacote 30">
+<figcaption class="ok">O id 30 saiu da lista e do banco. Ficaram o 29 e o 27.</figcaption>
+</figure>
+
+<h2>4. Admin entrega ao distribuidor, e o pacote não desmembra</h2>
+<p>Destino: Pedro. Nesta rodada: 3 pacotes, 2 combos, 4 aplicações de R-1 e 2 correções de R-1.</p>
+<figure>
+<img src="r2-08-admin-distribuidor-pacote-3.png" alt="Três pacotes para o distribuidor">
+<img src="r2-09-admin-distribuidor-pacote-ok.png" alt="Aviso de 3 pacotes atribuídos">
+<figcaption class="ok">3 pacotes foram para o Pedro, fechados. O aviso diz "3 pacote(s) … atribuído(s) ao distribuidor." No banco, uma compra do pacote 29, quantidade 3, sem linha dos itens.</figcaption>
+</figure>
+<figure>
+<img src="r2-10-admin-distribuidor-combo-2.png" alt="Dois combos">
+<img src="r2-11-admin-distribuidor-combo-ok.png" alt="Aviso de 2 licenças do combo">
+<figcaption class="ok">2 licenças de aplicação do COMBO_AOL foram para o Pedro. A quantidade no banco é 2, a mesma digitada.</figcaption>
+</figure>
+<figure>
+<img src="r2-12-admin-distribuidor-r1-app4-corr2.png" alt="R-1 correção 2 e aplicação 4">
+<figcaption class="ok">R-1 correção 2 e R-1 aplicação 4, em duas compras separadas, as duas no distribuidor.</figcaption>
+</figure>
+
+<h2>5. Admin entrega ao cliente</h2>
+<p>Destino: Antonio, departamento 11. Combo 1, R-1 aplicação 3 e R-1 correção 1. Também foram 2 pacotes, para ver o que acontece quando o pacote chega no cliente.</p>
+<figure>
+<img src="r2-14-admin-cliente-r1.png" alt="R-1 para o cliente">
+<figcaption class="ok">Antes de confirmar, a tela é Clientes, Cliente, Inserir licença. Correção 1 e aplicação 3. O departamento 11 recebeu essas quantidades, sem multiplicar.</figcaption>
+</figure>
+<figure>
+<img src="r2-15-admin-cliente-pacote-2.png" alt="Dois pacotes para o cliente">
+<figcaption class="ok">Os 2 pacotes não entraram como pacote no departamento. O banco criou um cabeçalho de 2 e duas licenças de item, também de 2: R-1 aplicação e EAG-A aplicação. O combo entrou como 1 no mesmo departamento.</figcaption>
+</figure>
+
+<h2>6. Distribuidor entrega ao cliente</h2>
+<p>Pedro abre o cliente Antonio. Estoque dele antes de distribuir nesta rodada:</p>
+<figure>
+<img src="r2-16-distribuidor-estoque-antes.png" alt="Estoque antes">
+<figcaption>COMBO_AOL estoque 2. O pacote novo está com estoque 3 e saldo distribuído 0: os 3 que o admin acabou de dar, ainda fechados. R-1 aplicação estoque 5. A linha do pacote antigo ficou de fora desta rodada.</figcaption>
+</figure>
+<figure>
+<img src="r2-17-distribuidor-estoque-depois.png" alt="Estoque depois">
+<figcaption class="ok">Pedro distribuiu 2 pacotes, 1 combo e 1 aplicação. O pacote novo foi de estoque 3 para 1 e de saldo distribuído 0 para 2. O combo foi de 2 para 1. O R-1 aplicação foi de 5 para 4. O pacote antigo continuou em 1.</figcaption>
+</figure>
+<figure>
+<img src="r2-18-distribuidor-correcao-depois.png" alt="Correção depois">
+<figcaption class="ok">Na correção, Pedro ficou com estoque 1 e saldo distribuído 2. Nesta rodada ele entregou 1 correção. O grupo padrão de correção é 25, então o cliente recebeu 25. O banco gravou amount 25 e group_qty 25, do distribuidor 903 para o departamento 11.</figcaption>
+</figure>
+<p class="ok">Saíram 2 pacotes do Pedro e entraram 2 de R-1 aplicação e 2 de EAG-A no cliente. O cliente não recebeu o pacote. Pedir 5 pacotes sem estoque suficiente respondeu 409 e não gravou linha nova.</p>
+
+<h2>7. Saldo final do cliente</h2>
+<figure>
+<img src="r2-19-cliente-saldos-finais.png" alt="Saldos do cliente">
+<figcaption class="ok">Na lista do cliente aparecem os instrumentos: COMBO_AOL 4, R-1 aplicação 16, R-1 correção 55, EAG-A 7. O pacote não aparece. Nesta rodada entraram +2 combo, +8 R-1 aplicação, +26 R-1 correção e +4 EAG-A. O restante já estava da rodada anterior. Dos 26 de correção, 1 veio direto do admin e 25 do grupo do distribuidor.</figcaption>
+</figure>
+
+<h2 id="pacote-em-uso">8. Pacote já usado não é excluído</h2>
+<figure>
+<img src="r2-20-pacote-em-uso-nao-exclui.png" alt="Pacote 29 continua na lista">
+<figcaption class="ok">Depois de confirmar a exclusão do pacote 29, ele continua na lista. O aviso foi "Não foi possível excluir o pacote." O backend recusou com 409 porque já existe movimentação. A tela não oferece desativar.</figcaption>
+</figure>
+</body>
+</html>
