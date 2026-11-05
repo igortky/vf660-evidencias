@@ -11,13 +11,20 @@
   th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.6rem; border-bottom: 1px solid #ddd; }
   th { font-weight: 700; }
   a { color: #0b3d91; }
+  .reports { display: flex; gap: 16px; margin: 1.2rem 0 1.6rem; flex-wrap: wrap; }
+  .reports a { display: block; flex: 1; min-width: 240px; padding: 16px 18px; border: 1px solid #ccc; background: #f7f7f4; text-decoration: none; color: #1c1c1c; font-family: sans-serif; }
+  .reports a strong { display: block; font-size: 1.15rem; margin-bottom: 0.3rem; }
   .ok { color: #0b6b2f; font-weight: 700; }
   .bad { color: #8a1c1c; font-weight: 700; }
 </style>
 </head>
 <body>
 <h1>VF-660</h1>
-<p>O que foi exercitado em pacote, combo e bateria. O detalhe com as telas está nos dois relatórios: <a href="pacotes.html">pacotes</a> e <a href="baterias.html">baterias e combos</a>.</p>
+<p>Resumo do que foi testado. As telas estão em dois relatórios separados.</p>
+<div class="reports">
+  <a href="pacotes.html"><strong>Relatório de pacotes</strong>Criar, editar, excluir e distribuir pacote, combo e teste individual.</a>
+  <a href="baterias.html"><strong>Relatório de baterias e combos</strong>Criar e aplicar bateria, e cancelar um item do combo.</a>
+</div>
 
 <table>
   <thead>
